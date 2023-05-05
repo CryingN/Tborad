@@ -1,0 +1,118 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://image/writeline.svg" type="Texture" id=1]
+[ext_resource path="res://shader/board.shader" type="Shader" id=2]
+[ext_resource path="res://code/main.gd" type="Script" id=3]
+[ext_resource path="res://image/player.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/deep_color = Color( 0, 0.457031, 0.114258, 1 )
+shader_param/light_color = Color( 0, 0.609375, 0.152344, 1 )
+shader_param/number = 11.0
+
+[node name="main" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 16.0, 1500.0, 1300.0, 1420.0 ],
+"_edit_vertical_guides_": [ 40.0, 760.0, 800.0 ]
+}
+
+[node name="UI" type="Control" parent="."]
+margin_right = 800.0
+margin_bottom = 1500.0
+
+[node name="background2" type="ColorRect" parent="UI"]
+visible = false
+margin_right = 800.0
+margin_bottom = 1500.0
+color = Color( 0.121569, 0.121569, 0.121569, 1 )
+
+[node name="station" type="CheckButton" parent="UI"]
+anchor_left = 0.954
+anchor_top = 0.001
+anchor_right = 0.954
+anchor_bottom = 0.001
+margin_left = -142.2
+margin_top = -0.5
+margin_right = -0.200073
+margin_bottom = 49.5
+text = "station"
+
+[node name="arrow" type="CheckButton" parent="UI"]
+anchor_left = 0.954
+anchor_top = 0.034
+anchor_right = 0.954
+anchor_bottom = 0.034
+margin_left = -142.2
+margin_right = -0.200073
+margin_bottom = 50.0
+text = "arrow"
+
+[node name="situation" type="OptionButton" parent="UI"]
+margin_left = 40.0
+margin_top = 16.0
+margin_right = 245.0
+margin_bottom = 41.0
+text = "clear ground"
+align = 1
+items = [ "clear ground", null, false, 0, null, "5 people", null, false, 1, null, "8 people", null, false, 2, null, "11 people", null, false, 3, null ]
+selected = 0
+
+[node name="Ma_in" type="OptionButton" parent="UI"]
+margin_left = 256.0
+margin_top = 16.0
+margin_right = 568.0
+margin_bottom = 41.0
+keep_pressed_outside = true
+text = "*new lineup*"
+align = 1
+items = [ "*new lineup*", null, false, 0, null, "xingong", null, false, 1, null ]
+selected = 0
+
+[node name="Button" type="Button" parent="UI"]
+margin_left = 576.0
+margin_top = 16.0
+margin_right = 600.0
+margin_bottom = 40.0
+
+[node name="A_team" type="TouchScreenButton" parent="UI"]
+modulate = Color( 0.72549, 0, 0, 1 )
+position = Vector2( 50, 1300 )
+scale = Vector2( 2.5, 2.5 )
+normal = ExtResource( 4 )
+
+[node name="NEW" type="Label" parent="UI/A_team"]
+margin_left = 12.0
+margin_top = 18.8
+margin_right = 42.0
+margin_bottom = 32.8
+rect_scale = Vector2( 0.8, 0.8 )
+text = "NEW"
+align = 1
+
+[node name="B_team" type="TouchScreenButton" parent="UI"]
+modulate = Color( 0, 0.2, 0.792157, 1 )
+position = Vector2( 280, 1300 )
+scale = Vector2( 2.5, 2.5 )
+normal = ExtResource( 4 )
+
+[node name="NEW" type="Label" parent="UI/B_team"]
+margin_left = 12.0
+margin_top = 18.8
+margin_right = 42.0
+margin_bottom = 32.8
+rect_scale = Vector2( 0.8, 0.8 )
+text = "NEW"
+align = 1
+
+[node name="borad" type="ColorRect" parent="."]
+material = SubResource( 1 )
+margin_left = 40.0
+margin_top = 136.0
+margin_right = 760.0
+margin_bottom = 1256.0
+
+[node name="Writeline" type="Sprite" parent="."]
+position = Vector2( 400, 696 )
+texture = ExtResource( 1 )
