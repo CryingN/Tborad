@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="Line2D" type="Polygon2D"]
+scale = Vector2( 9.35, 1 )
+polygon = PoolVector2Array( 0, 0, -2, 22, -1, 20, -1.2, 80, 0, 65, 1.2, 80, 1, 20, 2, 22 )

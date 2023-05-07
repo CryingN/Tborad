@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://image/writeline.svg" type="Texture" id=1]
 [ext_resource path="res://shader/board.shader" type="Shader" id=2]
 [ext_resource path="res://code/main.gd" type="Script" id=3]
 [ext_resource path="res://image/player.png" type="Texture" id=4]
+[ext_resource path="res://image/icon.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -22,12 +23,6 @@ __meta__ = {
 margin_right = 800.0
 margin_bottom = 1500.0
 
-[node name="background2" type="ColorRect" parent="UI"]
-visible = false
-margin_right = 800.0
-margin_bottom = 1500.0
-color = Color( 0.121569, 0.121569, 0.121569, 1 )
-
 [node name="station" type="CheckButton" parent="UI"]
 anchor_left = 0.954
 anchor_top = 0.001
@@ -37,6 +32,7 @@ margin_left = -142.2
 margin_top = -0.5
 margin_right = -0.200073
 margin_bottom = 49.5
+pressed = true
 text = "station"
 
 [node name="arrow" type="CheckButton" parent="UI"]
@@ -70,7 +66,7 @@ align = 1
 items = [ "*new lineup*", null, false, 0, null, "xingong", null, false, 1, null ]
 selected = 0
 
-[node name="Button" type="Button" parent="UI"]
+[node name="save" type="Button" parent="UI"]
 margin_left = 576.0
 margin_top = 16.0
 margin_right = 600.0
@@ -93,7 +89,7 @@ align = 1
 
 [node name="B_team" type="TouchScreenButton" parent="UI"]
 modulate = Color( 0, 0.2, 0.792157, 1 )
-position = Vector2( 280, 1300 )
+position = Vector2( 240, 1300 )
 scale = Vector2( 2.5, 2.5 )
 normal = ExtResource( 4 )
 
@@ -106,6 +102,12 @@ rect_scale = Vector2( 0.8, 0.8 )
 text = "NEW"
 align = 1
 
+[node name="delete" type="TouchScreenButton" parent="UI"]
+position = Vector2( 414, 1279 )
+scale = Vector2( 2.5, 2.5 )
+normal = ExtResource( 5 )
+passby_press = true
+
 [node name="borad" type="ColorRect" parent="."]
 material = SubResource( 1 )
 margin_left = 40.0
@@ -116,3 +118,11 @@ margin_bottom = 1256.0
 [node name="Writeline" type="Sprite" parent="."]
 position = Vector2( 400, 696 )
 texture = ExtResource( 1 )
+
+[connection signal="toggled" from="UI/station" to="." method="_on_station_toggled"]
+[connection signal="toggled" from="UI/arrow" to="." method="_on_arrow_toggled"]
+[connection signal="pressed" from="UI/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="UI/A_team" to="." method="_on_A_team_pressed"]
+[connection signal="pressed" from="UI/B_team" to="." method="_on_B_team_pressed"]
+[connection signal="pressed" from="UI/delete" to="." method="_on_delete_pressed"]
+[connection signal="released" from="UI/delete" to="." method="_on_delete_released"]
