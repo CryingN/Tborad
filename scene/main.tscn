@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://image/writeline.svg" type="Texture" id=1]
 [ext_resource path="res://shader/board.shader" type="Shader" id=2]
 [ext_resource path="res://code/main.gd" type="Script" id=3]
 [ext_resource path="res://image/player.png" type="Texture" id=4]
-[ext_resource path="res://image/icon.png" type="Texture" id=5]
+[ext_resource path="res://image/delete.svg" type="Texture" id=5]
+[ext_resource path="res://font/font_cn.tres" type="DynamicFont" id=6]
+[ext_resource path="res://font/theme_CN.tres" type="Theme" id=7]
+[ext_resource path="res://image/save.svg" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -12,65 +15,74 @@ shader_param/deep_color = Color( 0, 0.457031, 0.114258, 1 )
 shader_param/light_color = Color( 0, 0.609375, 0.152344, 1 )
 shader_param/number = 11.0
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 360, 560 )
+
 [node name="main" type="Node2D"]
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 16.0, 1500.0, 1300.0, 1420.0 ],
-"_edit_vertical_guides_": [ 40.0, 760.0, 800.0 ]
+"_edit_horizontal_guides_": [ 6.0, 1500.0, 1300.0, 1420.0, 50.0 ],
+"_edit_vertical_guides_": [ 40.0, 760.0, 783.0 ]
 }
 
 [node name="UI" type="Control" parent="."]
-margin_right = 800.0
-margin_bottom = 1500.0
 
-[node name="station" type="CheckButton" parent="UI"]
+[node name="retain" type="CheckButton" parent="UI"]
 anchor_left = 0.954
 anchor_top = 0.001
 anchor_right = 0.954
 anchor_bottom = 0.001
-margin_left = -142.2
-margin_top = -0.5
-margin_right = -0.200073
-margin_bottom = 49.5
+margin_left = 619.0
+margin_top = 3.0
+margin_right = 788.0
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 6 )
 pressed = true
-text = "station"
+text = "保留模式"
 
 [node name="arrow" type="CheckButton" parent="UI"]
-anchor_left = 0.954
-anchor_top = 0.034
-anchor_right = 0.954
-anchor_bottom = 0.034
-margin_left = -142.2
-margin_right = -0.200073
-margin_bottom = 50.0
-text = "arrow"
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 619.0
+margin_top = 53.0
+margin_right = 788.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 6 )
+text = "箭头模式"
+flat = true
 
 [node name="situation" type="OptionButton" parent="UI"]
-margin_left = 40.0
-margin_top = 16.0
+margin_left = 14.0
+margin_top = 6.0
 margin_right = 245.0
 margin_bottom = 41.0
-text = "clear ground"
+theme = ExtResource( 7 )
+text = "空场地"
 align = 1
-items = [ "clear ground", null, false, 0, null, "5 people", null, false, 1, null, "8 people", null, false, 2, null, "11 people", null, false, 3, null ]
+icon_align = 1
+items = [ "空场地", null, false, 0, null, "5人制", null, false, 1, null, "8人制", null, false, 2, null, "11人制", null, false, 3, null ]
 selected = 0
 
 [node name="Ma_in" type="OptionButton" parent="UI"]
 margin_left = 256.0
-margin_top = 16.0
+margin_top = 6.0
 margin_right = 568.0
-margin_bottom = 41.0
+margin_bottom = 42.0
+theme = ExtResource( 7 )
 keep_pressed_outside = true
-text = "*new lineup*"
+text = "新存档"
 align = 1
-items = [ "*new lineup*", null, false, 0, null, "xingong", null, false, 1, null ]
+icon_align = 1
+items = [ "新存档", null, false, 0, null, "别学数学,会不幸", null, false, 1, null ]
 selected = 0
 
 [node name="save" type="Button" parent="UI"]
-margin_left = 576.0
-margin_top = 16.0
-margin_right = 600.0
-margin_bottom = 40.0
+margin_left = 571.0
+margin_top = 3.0
+margin_right = 619.0
+margin_bottom = 45.0
+icon = ExtResource( 8 )
+flat = true
 
 [node name="A_team" type="TouchScreenButton" parent="UI"]
 modulate = Color( 0.72549, 0, 0, 1 )
@@ -104,7 +116,6 @@ align = 1
 
 [node name="delete" type="TouchScreenButton" parent="UI"]
 position = Vector2( 414, 1279 )
-scale = Vector2( 2.5, 2.5 )
 normal = ExtResource( 5 )
 passby_press = true
 
@@ -115,14 +126,67 @@ margin_top = 136.0
 margin_right = 760.0
 margin_bottom = 1256.0
 
+[node name="get_arrow" type="TouchScreenButton" parent="borad"]
+shape = SubResource( 5 )
+
 [node name="Writeline" type="Sprite" parent="."]
 position = Vector2( 400, 696 )
 texture = ExtResource( 1 )
 
-[connection signal="toggled" from="UI/station" to="." method="_on_station_toggled"]
+[node name="num_UI" type="Node2D" parent="."]
+visible = false
+z_index = 3
+
+[node name="background" type="ColorRect" parent="num_UI"]
+margin_left = 256.0
+margin_top = 614.0
+margin_right = 548.0
+margin_bottom = 766.0
+theme = ExtResource( 7 )
+color = Color( 0.121569, 0.117647, 0.141176, 1 )
+
+[node name="SpinBox" type="SpinBox" parent="num_UI/background"]
+margin_left = 65.0
+margin_top = 9.0
+margin_right = 282.0
+margin_bottom = 56.0
+align = 1
+
+[node name="Button" type="Button" parent="num_UI/background"]
+margin_left = 14.0
+margin_top = 110.0
+margin_right = 276.0
+margin_bottom = 146.0
+text = "确认"
+
+[node name="nameBox" type="LineEdit" parent="num_UI/background"]
+margin_left = 65.0
+margin_top = 62.0
+margin_right = 282.0
+margin_bottom = 105.0
+align = 1
+
+[node name="Label" type="Label" parent="num_UI/background"]
+anchor_left = 0.048
+anchor_top = 0.651
+anchor_right = 0.048
+anchor_bottom = 0.651
+margin_left = -6.016
+margin_top = -75.952
+margin_right = 53.984
+margin_bottom = -0.952003
+text = "球号
+
+名字"
+
+[connection signal="toggled" from="UI/retain" to="." method="_on_retain_toggled"]
 [connection signal="toggled" from="UI/arrow" to="." method="_on_arrow_toggled"]
 [connection signal="pressed" from="UI/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="UI/A_team" to="." method="_on_A_team_pressed"]
 [connection signal="pressed" from="UI/B_team" to="." method="_on_B_team_pressed"]
 [connection signal="pressed" from="UI/delete" to="." method="_on_delete_pressed"]
 [connection signal="released" from="UI/delete" to="." method="_on_delete_released"]
+[connection signal="pressed" from="borad/get_arrow" to="." method="_on_get_arrow_pressed"]
+[connection signal="value_changed" from="num_UI/background/SpinBox" to="." method="_on_SpinBox_value_changed"]
+[connection signal="button_up" from="num_UI/background/Button" to="." method="_on_Button_button_up"]
+[connection signal="text_changed" from="num_UI/background/nameBox" to="." method="_on_nameBox_text_changed"]
