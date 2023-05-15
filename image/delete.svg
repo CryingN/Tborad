@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="160"
+   height="160"
+   viewBox="0 0 42.333332 42.333333"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="delete.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#616161"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.3638608"
+     inkscape:cx="31.362772"
+     inkscape:cy="93.6424"
+     inkscape:window-width="1500"
+     inkscape:window-height="978"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;fill-opacity:0.296774;stroke:none;stroke-width:2.64583"
+       id="rect234"
+       height="39.6875"
+       x="1.3229166"
+       y="1.3229166"
+       width="39.6875"
+       rx="2.6458333"
+       ry="2.6458333" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.60796"
+       d="M 7.2875413,11.998319 12.250331,35.116432 30.489632,34.906996 35.165457,11.998319 Z"
+       id="path291" />
+    <path
+       id="path2251"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.99572"
+       d="M 7.0178691,7.7903686 6.4937584,10.783934 H 35.920127 L 35.421954,7.7903686 Z M 7.9845715,8.5504082 H 34.453194 l 0.464,1.5371348 H 7.4962797 Z" />
+    <path
+       id="path2251-3"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.10222"
+       d="m 19.16711,5.9541263 -0.07782,1.5375514 h 1.268076 V 6.9670965 h 1.849827 v 0.5245812 h 1.242549 l -0.0741,-1.5375514 z" />
+  </g>
+</svg>
