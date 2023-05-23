@@ -2,16 +2,14 @@ extends Node2D
 
 var A_team_color:Color = Color(0.73,0,0,1)
 var B_team_color:Color = Color(0.3,0.2,0.79,1)
-var A_team_num:int = 1
-var B_team_num:int = 2
-var num = 0
+var num : int = 1
 var num_ma_in:int = 0
 var color : Color
 var the_position : Vector2
 var the_name : String
 
-var player = preload('res://scene/player.tscn')
-var new_arrow = preload('res://scene/arrow.tscn')
+const player = preload('res://scene/player.tscn')
+const new_arrow = preload('res://scene/arrow.tscn')
 
 onready var Ma_in = $UI/Ma_in
 onready var A_team = $UI/A_team
@@ -32,6 +30,9 @@ func _ready():
 
 func _process(_delta):
 	if Global.edit and not spinbox.visible:
+		# if show the num_UI:whenever old player or new player;
+		# the UI come from Global.number:int and Global.the_text:str;
+		# we can move Global.number and Global.the_text only.
 		the_spin.get_line_edit().text = str(Global.number)
 		namebox.text = Global.the_text
 		spinbox.show()
@@ -39,15 +40,15 @@ func _process(_delta):
 
 func Spinbox_show():
 	Global.edit = true
-	Global.new_edit = true
-	namebox.text = ""
+	Global.old_edit = 0
+	Global.number = num
+	Global.the_text = ""
 	pass
 
 # A_team button, it used to create new player.tscn.
 func _on_A_team_pressed():
 	color = A_team_color
 	the_position = Vector2(100,90)
-	namebox.text = ""
 	if not Global.arrow:
 		Spinbox_show()
 	pass
@@ -114,24 +115,27 @@ func _on_nameBox_text_changed(new_text):
 func _on_Button_button_up():
 	Global.edit = false
 	spinbox.hide()
-	if Global.new_edit:
-		get_player(color,num,the_position,the_name)
+	if Global.old_edit == 0:
+		get_player(the_spin.get_line_edit().text,the_position,namebox.text)
 	else:
-
-		change_player(num,the_name)
+		change_player(the_spin.get_line_edit().text,namebox.text)
 	pass
 	
-func get_player(the_color,the_num,tp,tn):
+func get_player(the_num,tp,tn):
 	var the_player = player.instance()
 	the_player.the_color = color
-	the_player.number = num
+	the_player.number = int(the_num)
 	the_player.position = tp
 	the_player.the_text = tn
 	add_child(the_player)
+	Global.pt("##### create a player name: {new_name} and num: {new_num}".format({
+		new_name = tn,
+		new_num = the_num
+	}))
 	pass
 	
 func change_player(the_num,tn):
 	Global.the_text = tn
-	Global.number = the_num
-	Global.change_bool = true
+	Global.number = int(the_num)
+	Global.change_rank = Global.old_edit
 	pass

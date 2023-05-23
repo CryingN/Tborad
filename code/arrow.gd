@@ -9,9 +9,9 @@ var start_key : bool
 var end_key : bool
 var delete : bool
 var vector : Vector2
+const min_vec = 1
 
 func _ready():
-	start.hide()
 	end_key = true
 	start_key = false
 	delete = false
@@ -20,15 +20,22 @@ func _ready():
 
 
 func _process(_delta):
-	if Global.edit and not Global.arrow:
-		start.hide()
-		end.hide()
+	if min_vec > scale.y and not end_key:
+		queue_free()
+		Global.pt("**delete a too small arrow**")
+		
+	if not Global.arrow:
+		if Global.edit:
+			start.hide()
+			end.hide()
+			delete = false
 		if not Global.retain:
 			queue_free()
 			Global.pt("**delete all arrow**")
 	else:
 		start.show()
 		end.show()
+	
 	# end 端移动
 	if end_key:
 		vector = position - get_global_mouse_position()
@@ -68,7 +75,7 @@ func _on_Timer_timeout():
 
 func _on_used_to_delete_released():
 	time.start()
-	if delete:
+	if Global.arrow and delete:
 		queue_free()
 		Global.pt("**delete a arrow**")
 	delete = true

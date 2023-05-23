@@ -8,8 +8,9 @@ var clean : bool = false
 var move_arrow : bool = false
 var retain : bool = true
 var edit : bool
-var new_edit : bool
-var change_bool : bool = false
+var old_edit : int = 0
+var change_rank : int = 0
+var rank : int = 1
 
 var the_text : String = ""
 var number : int = 1

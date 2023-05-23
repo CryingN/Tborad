@@ -15,7 +15,7 @@ run/main_scene="res://scene/main.tscn"
 boot_splash/image="res://image/VYCMa_by_Godot_test.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://image/icon.png"
+config/icon="res://image/main_icon.png"
 
 [autoload]
 
